@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <title>Voice Assistant</title>
+
+        <!-- CSS only -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <style>
+            .jumbotron {
+                width: 600px;
+                margin: 10px auto 10px auto;
+            }
+            .v2f-audio-start {
+                display: none;
+                background-color: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <form class="jumbotron" method="GET" action="/">
+                    <h1 class="display-5">Formulario<small class="v2f-audio-start">🎤</small></h1>
+                    <p class="lead">Preenchimento de formulario via voz (Voice Assistant)</p>
+                    <hr class="my-2">
+                    <div class="form-group">
+                      <label for="tName">Nome:</label>
+                      <input type="text"
+                        class="form-control" name="tName" id="tName" aria-describedby="helpName" placeholder="Nome do cliente....">
+                      <small id="helpName" class="form-text text-muted">Insira o nome do cadastro...</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="tPhone">Telefone:</label>
+                        <input type="text"
+                          class="form-control" name="tPhone" id="tPhone" aria-describedby="helpPhone" placeholder="Telefone do cliente....">
+                        <small id="helpPhone" class="form-text text-muted">Insira o Telefone do cadastro...</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="tDoc">Documento:</label>
+                        <input type="text"
+                          class="form-control" name="tDoc" id="tDoc" aria-describedby="helpDoc" placeholder="Documento do cliente....">
+                        <small id="helpDoc" class="form-text text-muted">Insira o Documento do cadastro...</small>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" name="tStatus" id="tStatus" value="checkedValue" checked>
+                            Status
+                        </label>
+                    </div>
+                    <button type="button" name="" id="" class="btn btn-primary btn-sm btn-block mt-3">Enviar</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- JS, Popper.js, and jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+        <!-- v2f -->
+        <script type="module" src="index.js"></script>
+        
+    </body>
+</html>
