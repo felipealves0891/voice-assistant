@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": ""
   },
   "repository": {
     "type": "git",
@@ -15,8 +15,5 @@
   "bugs": {
     "url": "https://github.com/felipealves0891/voice-assistant/issues"
   },
-  "homepage": "https://github.com/felipealves0891/voice-assistant#readme",
-  "devDependencies": {
-    "jest": "^26.4.2"
-  }
+  "homepage": "https://github.com/felipealves0891/voice-assistant#readme"
 }

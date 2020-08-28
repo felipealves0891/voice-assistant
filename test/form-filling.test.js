@@ -1,4 +1,4 @@
-const formFillingFactory = require('../src/form-filling.js')
+import formFillingFactory from '../src/form-filling.js'
 
 test('sanitize', () => {
     let sanitizedValue = formFillingFactory().sanitize("Nome:");
