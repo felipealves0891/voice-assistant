@@ -1,4 +1,5 @@
 import formFillingFactory from './src/form-filling.js'
+import handlerCommand from './src/handler-command.js'
 
 // Valida se o navegador tem suporte
 let speechRecognition = window.SpeechRecognition ||
@@ -13,64 +14,7 @@ if(speechRecognition == null){
 
     assistant.fill = formFillingFactory(document)
 
-    assistant.bot = {
-        text: "",
-        setText: function (newText) {
-            assistant.bot.text = newText.trim()
-            return assistant.bot
-        },
-        textToArray: function () {
-            assistant.bot.text = assistant.bot.text.split(' ')
-            return assistant.bot
-        },
-        convert: function () {
-            let words = assistant.bot.text;
-            if(words[0] != "vi")
-                return {}
-                
-            words.splice(1)
-                .map((item) => item.trim())
-                .reduce(assistant.bot.commands)
-                .map(assistant.bot.construct)
-                .map(assistant.bot.fill)
-        },
-        commands: function (accumulator, current) {
-            let isArticle = accumulator == "o" || accumulator == "a";
-            if(isArticle) {
-                accumulator = [[]]
-            }
-
-            if(typeof accumulator != 'object'){
-                let value = accumulator
-                accumulator = [[value]]
-            }
-
-            if(current == "e"){
-                return accumulator
-            }
-
-            if(current == "o" || current == "a") {
-                let index = accumulator.length
-                accumulator[index] = accumulator[0]
-                accumulator[0] = []
-                return accumulator
-            }
-
-            accumulator[0].push(current)
-            return accumulator
-        },
-        construct: function (item) {
-            return {
-                label: item[0],
-                text: item.splice(2).join(' ')
-            }
-        },
-        fill: function (item) {
-            assistant.fill
-                    .defineIdByLabel(item.label)
-                    .setValueById(item.text)
-        }
-    }
+    assistant.bot = handlerCommand()
 
     assistant.capture = {
         v2fAudioStart: null,
@@ -98,9 +42,19 @@ if(speechRecognition == null){
         getResult: function getResult(event) {
             let content = assistant.capture.getContent(event.results);
             console.log(content)
-            assistant.bot.setText(content)
-                    .textToArray()
-                    .convert();
+            
+            let commands = assistant.bot.setWordsWithText(content)
+                                        .isTalkingToMe()
+                                        .findCommandData()
+                                        .generateCommands()
+                                        .getCommands()
+            console.log(commands)
+
+            commands.map((command) => {
+                assistant.fill.defineIdByLabel(command.label)
+                              .setValueById(command.value)
+            })
+
         },
         getContent: function (result) {
             let content = "";

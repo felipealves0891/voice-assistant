@@ -5,16 +5,16 @@ function formFilling(document = {}) {
     let elementId
 
     function setId(id) {
-        this.elementId = id
+        elementId = id
         return this
     }
 
     function getId() {
-        return this.elementId
+        return elementId
     }
 
     function setValueById(value) {
-        let element = document.getElementById(this.elementId)
+        let element = document.getElementById(elementId)
         if(!element){
             return false
         } 
@@ -31,7 +31,7 @@ function formFilling(document = {}) {
             for (const key in elements) {
                 let innerText = elements[key].innerText
                 if(sanitize(label) == sanitize(innerText)){
-                    this.elementId = elements[key].htmlFor
+                    elementId = elements[key].htmlFor
                     return this
                 }
                     
