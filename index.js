@@ -1,3 +1,4 @@
+import formFillingFactory from './src/form-filling.js'
 
 // Valida se o navegador tem suporte
 let speechRecognition = window.SpeechRecognition ||
@@ -10,32 +11,7 @@ if(speechRecognition == null){
     
     let assistant = {}
 
-    assistant.fill = {
-        inputId: "",
-        sanitizeText: function sanitizeText(text) {
-            return text.toLowerCase()
-                        .replace(/[^\A-z1-9]/g, '')
-        },
-        getInputIdByLabel: function getInputIdByLabel(searchText) {
-            const labels = document.querySelectorAll("label");
-            searchText = this.sanitizeText(searchText);
-            for (let i = 0; i < labels.length; i++) {
-                const innerText = this.sanitizeText(labels[i].innerText);
-                if(searchText == innerText){
-                    this.inputId = labels[i].htmlFor
-                }
-            }
-            return this
-        },
-        setValue: function setValue(value) {
-            let elem = document.getElementById(this.inputId)
-            if(!elem)
-                return false
-
-            elem.value = value
-            return true
-        }
-    }
+    assistant.fill = formFillingFactory(document)
 
     assistant.bot = {
         text: "",
@@ -90,8 +66,9 @@ if(speechRecognition == null){
             }
         },
         fill: function (item) {
-            assistant.fill.getInputIdByLabel(item.label)
-                    .setValue(item.text)
+            assistant.fill
+                    .defineIdByLabel(item.label)
+                    .setValueById(item.text)
         }
     }
 
