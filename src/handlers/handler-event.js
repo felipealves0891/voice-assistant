@@ -10,3 +10,5 @@ function HandlerEvent(observers = []) {
     return handler
 
 }
+
+export default HandlerEvent
