@@ -1,4 +1,4 @@
-import handlerCommandFactory from '../src/handler-command.js'
+import handlerCommandFactory from '../src/commands/handler-command.js'
 
 test('set words with text', () => {
     let text = " O nome é Felipe Alves"
